@@ -1,0 +1,67 @@
+image: node:alpine
+
+stages:
+  - build
+  - deploy
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+      - node_modules/
+
+build:
+  stage: build
+  before_script:
+      - 'which ssh-agent || ( apk add --update openssh )'
+      - apk add --update bash
+      - apk add --update rsync
+      - apk add --no-cache make gcc g++ python
+      
+      - eval $(ssh-agent -s)
+      - echo "$SSH_PRIVATE_KEY" | ssh-add -
+
+      - mkdir -p ~/.ssh
+      - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+      - npm install
+      - npm run build:ssr
+      - rsync -a --delete dist/ root@bool.kz:/home/www/www-ssr.bool.kz/source/dist/
+  only:
+      - production
+
+deploy:
+  stage: deploy
+  before_script:
+    - 'which ssh-agent || ( apk add --update openssh )'
+    - apk add --update bash
+    - apk add --update git
+    
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | ssh-add -
+
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - npm i -g pm2
+    - pm2 deploy ecosystem.config.js production
+  only:
+    - production
+
+setup:
+  stage: deploy
+  before_script:
+    - 'which ssh-agent || ( apk add --update openssh )'
+    - apk add --update bash
+    - apk add --update git
+    
+    - eval $(ssh-agent -s)
+    - echo "$SSH_PRIVATE_KEY" | ssh-add -
+
+    - mkdir -p ~/.ssh
+    - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+    - npm i -g pm2
+    - pm2 deploy ecosystem.config.js production setup
+  only:
+    - production
+  when: manual
