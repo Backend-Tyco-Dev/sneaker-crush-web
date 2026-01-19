@@ -1,8 +1,8 @@
 let url = '/';
 if (SERVER || DEBUG) {
-    url = 'http://localhost:3000/';
+    url = 'http://45.77.217.138:3000/';
 }
 if (process.env.USE_STAGING === 'true') {
-  url = 'https://staging.thesneakercrush.com/';
+  url = 'http://45.77.217.138:3000/';
 }
 export default url;
