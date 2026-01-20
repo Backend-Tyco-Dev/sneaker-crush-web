@@ -2,10 +2,7 @@ import Vue from 'vue';
 import { GraphQLClient } from 'graphql-request';
 import api from '@/modules/api';
 
-const OPTIONS = {
-    credentials: 'include',
-    mode: 'cors'
-};
+const OPTIONS = {};
 
 if (SERVER) {
     OPTIONS.headers = {
