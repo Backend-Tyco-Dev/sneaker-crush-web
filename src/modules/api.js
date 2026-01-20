@@ -1,10 +1,15 @@
+// Development: Use relative path to leverage webpack proxy
+// Production: Use full URL with port 3003
+// SSR: Use full URL with port 3000
 let url = '/';
-// Use proxy in development to avoid CORS issues
-// Only use direct URL for SSR (SERVER mode)
-if (SERVER) {
+
+if (typeof window === 'undefined' && SERVER) {
+    // SSR environment - use port 3000
     url = 'http://45.77.217.138:3000/';
+} else if (typeof window !== 'undefined' && process.env.NODE_ENV === 'production') {
+    // Production browser environment - use port 3003
+    url = 'http://45.77.217.138:3003/';
 }
-// In development (DEBUG mode), use relative path to leverage webpack proxy
-// The proxy will forward /graphql to http://45.77.217.138:3000/graphql
-// In production, use relative path (same domain)
+// Development browser: uses '/' which goes through webpack proxy
+
 export default url;

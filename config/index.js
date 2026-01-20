@@ -15,10 +15,7 @@ module.exports = {
         target: 'http://45.77.217.138:3000',
         changeOrigin: true,
         secure: false,
-        logLevel: 'debug',
-        pathRewrite: {
-          '^/graphql': '/graphql'
-        }
+        logLevel: 'debug'
       }
     },
 
