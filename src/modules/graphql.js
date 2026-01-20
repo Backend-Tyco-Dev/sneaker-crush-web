@@ -10,4 +10,13 @@ if (SERVER) {
     };
 }
 
-export default Vue.$gql = Vue.prototype.$gql = new GraphQLClient(`${api}graphql/`, OPTIONS);
+// Construct GraphQL endpoint URL
+const graphqlUrl = `${api}graphql/`;
+
+// Debug logging (only in development)
+if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'production' && DEBUG) {
+    console.log('[GraphQL] Endpoint URL:', graphqlUrl);
+    console.log('[GraphQL] Options:', OPTIONS);
+}
+
+export default Vue.$gql = Vue.prototype.$gql = new GraphQLClient(graphqlUrl, OPTIONS);

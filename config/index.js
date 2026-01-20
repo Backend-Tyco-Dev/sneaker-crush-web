@@ -11,11 +11,15 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/graphql': {
+      // Handle both /graphql and /graphql/ paths
+      '^/graphql(/.*)?$': {
         target: 'http://45.77.217.138:3000',
         changeOrigin: true,
         secure: false,
-        logLevel: 'debug'
+        logLevel: 'debug',
+        pathRewrite: {
+          '^/graphql': '/graphql'
+        }
       }
     },
 
