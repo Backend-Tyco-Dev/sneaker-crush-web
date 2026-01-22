@@ -1,19 +1,19 @@
 // Development: Use relative path to leverage webpack proxy (port 3000)
-// Production: Use full URL with port 3000 (same backend as development)
-// SSR: Use full URL with port 3000
+// Production: Use https://thesneakercrush.com/ (same domain, no CORS issues)
+// SSR: Use https://thesneakercrush.com/ (same domain as production)
 let url = '/';
 
 if (typeof window === 'undefined' && SERVER) {
-    // SSR environment (Node.js) - use port 3000
-    url = 'http://45.77.217.138:3000/';
+    // SSR environment (Node.js) - use https://thesneakercrush.com/
+    url = 'https://thesneakercrush.com/';
 } else if (typeof window !== 'undefined') {
     // Browser environment
     // Check if we're in production mode (webpack replaces process.env.NODE_ENV at build time)
     const isProduction = process.env.NODE_ENV === 'production';
     
     if (isProduction) {
-        // Production browser - use port 3000 (same backend as development)
-        url = 'http://45.77.217.138:3000/';
+        // Production browser - use https://thesneakercrush.com/
+        url = 'https://thesneakercrush.com/';
     }
     // Development browser: uses '/' which goes through webpack proxy to port 3000
 }
