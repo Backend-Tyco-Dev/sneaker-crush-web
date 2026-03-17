@@ -1,6 +1,9 @@
 import Vue from 'vue';
 import App from './app.vue';
 import { createRouter } from './router';
+import { normalizeImageUrl } from '@/utils/imageUrl';
+
+Vue.prototype.$normalizeImageUrl = normalizeImageUrl;
 
 import '@/modules/vue-vuex';
 import '@/modules/vue-meta';

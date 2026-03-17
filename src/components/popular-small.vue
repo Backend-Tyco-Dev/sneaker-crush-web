@@ -2,7 +2,7 @@
     <router-link :to="item.to" class="lnk text-dark">
         <b-row class="mb-1">
             <b-col cols="6" md="" class="pr-1">
-                <prop :h="270" :v="210" inner-class="bg-image-cover" :inner-style="{backgroundImage: 'url(' + (item.image || '') + ')'}"></prop>
+                <prop :h="270" :v="210" inner-class="bg-image-cover" :inner-style="{backgroundImage: 'url(' + $normalizeImageUrl(item.image || '') + ')'}"></prop>
             </b-col>
             <b-col cols="6" md="" class="pl-1">
                 <div class="text-uppercase title pt-2">

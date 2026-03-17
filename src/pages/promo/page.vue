@@ -35,9 +35,9 @@
                         <div class="small">
                             <i class="fa fa-envelope mr-2"></i>Contact
                         </div>
-                    </a><a href="https://twitter.com/thesneakercrush" target="_blank" class="btn wt text-uppercase text-white ml-3">
+                    </a><a href="https://x.com/thesneakercrush" target="_blank" class="btn wt text-uppercase text-white ml-3">
                         <div class="small">
-                            <i class="fab fa-twitter mr-2"></i>Follow
+                            <icon-x class="mr-2"></icon-x>Follow
                         </div>
                     </a>
                 </div>

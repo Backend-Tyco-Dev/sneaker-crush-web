@@ -1,7 +1,9 @@
 <template>
     <b-container>
         <template v-if="item">
-            <prop :h="2" :v="1" class="bg-bg" inner-class="bg-image-cover" :inner-style="{backgroundImage: 'url(' + item.image + ')'}"></prop>
+            <prop :h="2" :v="1" class="bg-bg" inner-class="bg-image-cover" :inner-style="item.image ? {} : {}">
+                <img v-if="item.image" referrerpolicy="no-referrer" :src="$normalizeImageUrl(item.image)" class="w-100 h-100" style="object-fit: cover; display: block" alt="">
+            </prop>
             <b-row class="mt-3">
                 <b-col class="text-muted small">
                     {{item.source}}

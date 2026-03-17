@@ -3,7 +3,7 @@
         <div class="items">
             <prop :h="2" :v="1"></prop>
             <prop :h="2" :v="1"font class="item" inner-class="va inside-cont" v-for="(item, index) in items" :key="index" :class="{show: current == index}">
-                <div class="image" :style="{backgroundImage: 'url(' + item.image + ')'}"></div>
+                <div class="image" :style="{backgroundImage: 'url(' + $normalizeImageUrl(item.image) + ')'}"></div>
                 <div class="inside vam">
                     <h1 class="font-weight-bold">
                         {{item.title}}

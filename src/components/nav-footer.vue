@@ -36,8 +36,8 @@
                                     <a href="https://www.instagram.com/sneakercrush" target="_blank" class="social grad-purple-hover va mr-2">
                                         <i class="fab fa-instagram vam"></i>
                                     </a>
-                                    <a href="https://twitter.com/sneakercrush" target="_blank" class="social grad-purple-hover va mr-2">
-                                        <i class="fab fa-twitter vam"></i>
+                                    <a href="https://x.com/sneakercrush" target="_blank" class="social grad-purple-hover va mr-2" aria-label="X (Twitter)">
+                                        <icon-x class="vam"></icon-x>
                                     </a>
                                     <!-- <a href="#" target="_blank" class="social grad-purple-hover va">
                                         <i class="fab fa-linkedin-in vam"></i>
@@ -69,8 +69,8 @@
                             <a href="https://www.instagram.com/sneakercrush" target="_blank" class="social white va mr-2">
                                 <i class="fab fa-instagram vam"></i>
                             </a>
-                            <a href="https://twitter.com/sneakercrush" target="_blank" class="social white va mr-2">
-                                <i class="fab fa-twitter vam"></i>
+                            <a href="https://x.com/sneakercrush" target="_blank" class="social white va mr-2" aria-label="X (Twitter)">
+                                <icon-x class="vam"></icon-x>
                             </a>
                             <!-- <a href="#" target="_blank" class="social white va">
                                 <i class="fab fa-linkedin-in vam"></i>
@@ -137,7 +137,9 @@
         background-size: contain;
     }
     a.social {
-        display: inline-block;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
         border-radius: 100px;
         color: #888888;
         border: 1px solid #888888;
@@ -145,6 +147,7 @@
         height: 28px;
         text-align: center;
         box-sizing: border-box;
+        font-size: 14px;
         &:visited {
             color: #888888;
         }

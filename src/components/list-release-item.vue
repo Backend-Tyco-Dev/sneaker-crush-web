@@ -15,7 +15,7 @@
             </b-col>
             <b-col cols="3" class="d-none d-md-block">
                 <router-link :to="{name: 'release-view', params: {id: item._id}}">
-                    <prop :h="270" :v="210" class="bg-bg" inner-class="bg-image-cover" :inner-style="{backgroundImage: 'url(' + image + ')'}">
+                    <prop :h="270" :v="210" class="bg-bg" inner-class="bg-image-cover" :inner-style="{backgroundImage: 'url(' + $normalizeImageUrl(image) + ')'}">
                     </prop>
                 </router-link>
             </b-col>
@@ -37,7 +37,7 @@
                     {{item.nickname}}
                 </div>
                 <router-link :to="{name: 'release-view', params: {id: item._id}}">
-                    <prop :h="270" :v="210" class="d-block d-md-none mt-3" inner-class="bg-image-cover" :inner-style="{backgroundImage: 'url(' + image + ')'}">
+                    <prop :h="270" :v="210" class="d-block d-md-none mt-3" inner-class="bg-image-cover" :inner-style="{backgroundImage: 'url(' + $normalizeImageUrl(image) + ')'}">
                     </prop>
                 </router-link>
                 <div class="mt-3 fw-500 d-none d-md-block">

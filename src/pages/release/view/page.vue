@@ -83,7 +83,7 @@
                             <b-col cols="12" sm="6" lg="12" v-for="(link, index) in item.buyLinks" :key="index">
                                 <b-row class="mb-3">
                                     <b-col class="va text-center retailer">
-                                        <prop v-if="link.icon" :h="5" :v="2" class="w-100 vam" inner-class="bg-image-contain" :inner-style="{backgroundImage: 'url(' + link.icon + ')'}">
+                                        <prop v-if="link.icon" :h="5" :v="2" class="w-100 vam" inner-class="bg-image-contain" :inner-style="{backgroundImage: 'url(' + $normalizeImageUrl(link.icon) + ')'}">
                                         </prop>
                                         <div class="vam small" v-if="!link.icon">
                                             {{link.title}}
@@ -269,7 +269,7 @@
                 // console.log(desc);
                 let params = {
                     url: window.location.href,
-                    cover: _.get(item, 'imageUrls[0]') || '',
+                    cover: this.$normalizeImageUrl(_.get(item, 'imageUrls[0]') || ''),
                     title: item.title,
                     desc: desc,
                     // backurl: '' //window.location.href
@@ -420,7 +420,7 @@ END:VCALENDAR`;
 		        	seo.title = Release.title;
 		        	seo.description = Release.description;
 		        	// seo.keywords = '',
-		        	seo.image = Release.imageUrls && Release.imageUrls.length && Release.imageUrls[0];
+		        	seo.image = this.$normalizeImageUrl(Release.imageUrls && Release.imageUrls.length && Release.imageUrls[0]);
                     // console.log(this.$route.params.like);
                     // console.log(Release.date);
                     // console.log(moment(Release.date).format('YYYY-MM-DDTHH:mm:ss'));

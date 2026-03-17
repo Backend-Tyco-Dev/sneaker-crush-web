@@ -17,7 +17,7 @@
             <div class="item py-1 hoverable" v-for="(item, index) in items" :key="index" @click="open(item)">
                 <b-row>
                     <b-col :cols="wide ? 2 : 3" class="pr-0">
-                        <prop :h="270" :v="210" inner-class="bg-image-contain" :inner-style="{backgroundImage: 'url(' + (item.imageUrls && item.imageUrls.length && item.imageUrls[0]) + ')'}">
+                        <prop :h="270" :v="210" inner-class="bg-image-contain" :inner-style="{backgroundImage: 'url(' + $normalizeImageUrl(item.imageUrls && item.imageUrls.length && item.imageUrls[0]) + ')'}">
                         </prop>
                     </b-col>
                     <b-col :cols="wide ? 10 : 9" class="pl-1">

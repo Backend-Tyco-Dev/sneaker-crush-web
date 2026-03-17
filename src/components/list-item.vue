@@ -1,7 +1,7 @@
 <template>
     <router-link class="d-block item-link text-dark w-100" :to="route" :title="title">
-        <prop :h="270" :v="200" class="bg-image" inner-class="bg-image-cover" :inner-style="{backgroundImage: 'url(' + image + ')'}">
-            <!-- :inner-class="cover ? 'bg-image-cover' : 'bg-image-contain'" -->
+        <prop :h="270" :v="200" class="bg-image" inner-class="bg-image-cover" :inner-style="image ? {} : {}">
+            <img v-if="image" referrerpolicy="no-referrer" :src="$normalizeImageUrl(image)" class="list-item-img-cover" alt="">
             <slot name="over"></slot>
         </prop>
         <div class="font-weight-bold text-uppercase mt-1 text-truncate w-100" v-if="title">
@@ -136,6 +136,12 @@
     }
     .bg-image {
         background-color: #f9f9f9;
+    }
+    .list-item-img-cover {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        display: block;
     }
     .boldest {
         font-weight: 900;

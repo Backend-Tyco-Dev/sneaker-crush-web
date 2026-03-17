@@ -25,7 +25,8 @@ _.each([
 	'currency-dropdown',
 	'slider-image',
 	'slider-item',
-	'popular-small'
+	'popular-small',
+	'icon-x'
 ], name => {
     Vue.component(name, require(`./${name}.vue`).default);
 });

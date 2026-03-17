@@ -50,7 +50,7 @@
                 <b-col cols="4">
                     <rounded class="sm py-4 twitter text-white shadow-bottom va text-center hoverable">
                         <div class="vam text-uppercase h6 mb-0 font-weight-bold">
-                            <i class="fab fa-twitter mr-2"></i>Twitter
+                            <icon-x class="mr-2"></icon-x>X
                         </div>
                     </rounded>
                     <rounded class="sm py-4 mt-3 instagram shadow-bottom va text-center text-white hoverable">

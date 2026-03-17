@@ -19,7 +19,7 @@
                 <list :items="item.colorways" class="my-5">
                     <template slot="item" slot-scope="data">
                         <rounded class="shadow h-100 responsive">
-                            <prop :h="270" :v="210" class="bg-bg" inner-class="bg-image-cover" :inner-style="{backgroundImage: 'url(' + data.item.image + ')'}">
+                            <prop :h="270" :v="210" class="bg-bg" inner-class="bg-image-cover" :inner-style="{backgroundImage: 'url(' + $normalizeImageUrl(data.item.image) + ')'}">
                                 <slot name="over"></slot>
                             </prop>
                             <div class="p-3">

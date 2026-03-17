@@ -2,7 +2,7 @@
     <router-link :to="{name: 'release-view', params: {id: item && item._id}}" class="lnk text-dark">
         <b-row class="mb-1">
             <b-col cols="6" md="" class="pr-1">
-                <prop :h="270" :v="210" inner-class="bg-image-cover" :inner-style="{backgroundImage: 'url(' + (item.imageUrls && item.imageUrls[0] || '') + ')'}"></prop>
+                <prop :h="270" :v="210" inner-class="bg-image-cover" :inner-style="{backgroundImage: 'url(' + $normalizeImageUrl(item.imageUrls && item.imageUrls[0] || '') + ')'}"></prop>
             </b-col>
             <b-col cols="6" md="" class="pl-1">
                 <div class="text-uppercase title pt-2">
