@@ -1,30 +1,40 @@
 <template>
+    <!-- Wide ad: add slot ID from AdSense when you create a display ad unit -->
     <Adsense
-        v-if="type == 'wide'"
-        data-ad-client="ca-pub-6475787002077359"
-        data-ad-slot="8592458973"
+        v-if="type === 'wide' && slotWide"
+        data-ad-client="ca-pub-9801619597736701"
+        :data-ad-slot="slotWide"
         data-ad-format="auto"
         data-full-width-responsive="true"
         class="adsbygoogle hei">
     </Adsense>
+    <!-- Quad/sidebar ad: add slot ID (and optional layout key) from AdSense when you create an ad unit -->
     <Adsense
-        v-else
+        v-else-if="type !== 'wide' && slotQuad"
         class="adsbygoogle quad"
+        data-ad-client="ca-pub-9801619597736701"
+        :data-ad-slot="slotQuad"
         data-ad-format="fluid"
-        data-ad-layout-key="-8a+ey-1j-37+bu"
-        data-ad-client="ca-pub-6475787002077359"
-        data-ad-slot="3065279057">
+        :data-ad-layout-key="layoutKeyQuad || undefined">
     </Adsense>
 </template>
 <script>
- export default {
-     props: {
-         type: {
-             type: String,
-             default: "wide"
-         }
-     },
- }
+export default {
+    props: {
+        type: {
+            type: String,
+            default: 'wide'
+        }
+    },
+    data () {
+        return {
+            // Set these when you have ad units from AdSense (Ads → By ad unit). Leave empty until then.
+            slotWide: '',
+            slotQuad: '',
+            layoutKeyQuad: ''
+        }
+    }
+}
 </script>
 <style scoped>
 

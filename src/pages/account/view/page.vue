@@ -173,6 +173,6 @@
         background-color: #1d9eef;
     }
     .instagram {
-        background: linear-gradient(right bottom, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF);
+        background: linear-gradient(to left top, #FED373 4%, #F15245 30%, #D92E7F 62%, #9B36B7 85%, #515ECF);
     }
 </style>

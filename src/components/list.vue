@@ -9,12 +9,9 @@
                 </b-col><slot name="other" :index="index"></slot>
             </template>
             <div class="text-center mt-4 mb-5" v-if="loadMore && filtered && filtered.length">
-                <mugen-scroll :handler="loadNextPage" :should-handle="loadMore">
+                <mugen-scroll :handler="loadNextPage" :should-handle="loadMore && !loading">
                 </mugen-scroll>
-                <s-button class="grad-purple px-5" @click="loadNextPage()">
-                    Load More
-                </s-button>
-                
+                <preloader v-if="loading"></preloader>
             </div>
             <b-col cols="12" class="text-center py-3" v-if="filtered && !filtered.length"><!-- !filtered || -->
                 Nothing here.
@@ -38,6 +35,7 @@
                 default: () => []
             },
             loadMore: Boolean,
+            loading: Boolean,
             slider: Boolean,
             line: Boolean,
         },

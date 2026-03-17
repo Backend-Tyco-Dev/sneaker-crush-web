@@ -2,7 +2,7 @@
 
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install
 
@@ -12,6 +12,13 @@ npm run dev
 # build for production with minification
 npm run build
 ```
+
+## Development
+
+- **Requirements:** Node >= 18, npm >= 9 (see `engines` in package.json).
+- **Commands:** `npm run dev` (dev server), `npm run build` (production client build), `npm run build:ssr` (SSR build, used by CI). Optional: `npm run lint`, `npm run format`, `npm run test` (Jest), `npm run test:watch`.
+- **Environment:** Copy `.env.example` to `.env` and set `GRAPHQL_TARGET` if you need a different GraphQL backend for local dev. `PORT` and `HOST` can override the dev server.
+- **Build-time globals:** `SERVER` (true in SSR build) and `DEBUG` (true in dev) are injected by Webpack; see `build/webpack.*.conf.js`.
 
 ### Структура проекта
 

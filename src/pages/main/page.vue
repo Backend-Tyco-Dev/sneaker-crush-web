@@ -1,7 +1,7 @@
 <template>
 	<b-container>
 		<slider-main :items="slider" v-if="slider && slider.length"></slider-main>
-		<list :items="items" class="my-4" :load-more="true" @load-more="loadPageScroll()" :line-minus="3">
+		<list :items="items" class="my-4" :load-more="true" :loading="loading" @load-more="loadPageScroll()" :line-minus="3">
 			<template slot="item" slot-scope="data">
 				<list-item
 					:title="data.item.title"
@@ -27,7 +27,7 @@
 				</template>
 			</template>
 		</list>
-		<preloader class="text-center" v-if="loading"></preloader>
+		<preloader class="text-center" v-if="loading && !(items && items.length)"></preloader>
 	</b-container>
 </template>
 
@@ -35,7 +35,7 @@
 	import _ from 'lodash';
 	import moment from 'moment';
 
-	export default {
+	export default { 
 		metaInfo: {
 			title: 'Sneaker Crush',
 			meta: [

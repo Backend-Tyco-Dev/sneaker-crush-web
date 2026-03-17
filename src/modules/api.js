@@ -1,22 +1,13 @@
-// Development: Use relative path to leverage webpack proxy (port 3000)
-// Production: Use https://thesneakercrush.com/ (same domain, no CORS issues)
-// SSR: Use https://thesneakercrush.com/ (same domain as production)
-let url = '/';
+// Browser and SSR: always use thesneakercrush.com so GraphQL hits the live API.
+// For local dev this means requests go to https://thesneakercrush.com/graphql (CORS must allow your origin).
+const PRODUCTION_API = 'https://thesneakercrush.com/';
+
+let url = PRODUCTION_API;
 
 if (typeof window === 'undefined' && SERVER) {
-    // SSR environment (Node.js) - use https://thesneakercrush.com/
-    url = 'https://thesneakercrush.com/';
-} else if (typeof window !== 'undefined') {
-    // Browser environment
-    // Check if we're in production mode (webpack replaces process.env.NODE_ENV at build time)
-    const isProduction = process.env.NODE_ENV === 'production';
-    
-    if (isProduction) {
-        // Production browser - use https://thesneakercrush.com/
-        url = 'https://thesneakercrush.com/';
-    }
-    // Development browser: uses '/' which goes through webpack proxy to port 3000
+    url = PRODUCTION_API;
 }
+// Browser (dev and prod): use production API so GraphQL is https://thesneakercrush.com/graphql
 
 // Debug logging (only in development)
 if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'production' && DEBUG) {

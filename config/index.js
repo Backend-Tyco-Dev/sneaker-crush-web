@@ -2,7 +2,10 @@
 // Template version: 1.3.1
 // see http://vuejs-templates.github.io/webpack for documentation.
 
+require('dotenv').config({ quiet: true })
 const path = require('path')
+
+const graphqlTarget = process.env.GRAPHQL_TARGET || 'http://45.77.217.138:3000'
 
 module.exports = {
   dev: {
@@ -11,14 +14,14 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      // Handle both /graphql and /graphql/ paths
+      // Handle both /graphql and /graphql/ paths (target from GRAPHQL_TARGET or default)
       '^/graphql(/.*)?$': {
-        target: 'http://45.77.217.138:3000',
+        target: graphqlTarget,
         changeOrigin: true,
         secure: false,
         logLevel: 'debug',
         pathRewrite: {
-          '^/graphql': '/graphql'
+          '^/graphql/?': '/graphql'
         }
       }
     },

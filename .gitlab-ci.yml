@@ -1,6 +1,7 @@
 image: node:alpine
 
 stages:
+  - lint
   - build
   - deploy
 
@@ -8,6 +9,20 @@ cache:
   key: ${CI_COMMIT_REF_SLUG}
   paths:
       - node_modules/
+
+lint:
+  stage: lint
+  script:
+    - npm ci
+    - npm run lint
+  allow_failure: false
+
+test:
+  stage: lint
+  script:
+    - npm ci
+    - npm run test
+  allow_failure: false
 
 build:
   stage: build

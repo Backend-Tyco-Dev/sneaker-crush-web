@@ -32,7 +32,7 @@
 					<router-link :to="{name: 'release-list'}" class="text-dark font-weight-bold vam mr-3">Releases</router-link>
 					<router-link :to="{name: 'catalog-list'}" class="text-dark font-weight-bold vam mx-3">Catalog</router-link>
 					<router-link :to="{name: 'news-list'}" class="text-dark font-weight-bold vam mx-3">News</router-link>
-					<a href="http://sneakercrushshop.com" target="_blank" class="text-dark font-weight-bold vam ml-3">Store</a>
+					<a href="https://thesneakercrush.com" target="_blank" class="text-dark font-weight-bold vam ml-3">Store</a>
 				</b-col>
 				<b-col cols="auto" class="d-none d-xl-block">
 					<search-input :inverse="inverse"></search-input>
@@ -70,7 +70,7 @@
 						<router-link :to="{name: 'news-list'}" class="text-dark font-weight-bold vam mx-2 py-2 d-inline-block" @click.native="toggle(false)">News</router-link>
 					</b-col>
 					<b-col cols="12">
-						<a href="http://sneakercrushshop.com" target="_blank" class="text-dark font-weight-bold vam mx-2 py-2 d-inline-block" @click.native="toggle(false)">Store</a>
+						<a href="https://thesneakercrush.com" target="_blank" class="text-dark font-weight-bold vam mx-2 py-2 d-inline-block" @click="toggle(false)">Store</a>
 					</b-col>
 				</b-row>
 				<b-row class="mt-3">

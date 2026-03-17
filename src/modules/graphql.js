@@ -10,8 +10,8 @@ if (SERVER) {
     };
 }
 
-// Construct GraphQL endpoint URL
-const graphqlUrl = `${api}graphql/`;
+// Construct GraphQL endpoint URL (no trailing slash so proxy and backend routes match)
+const graphqlUrl = `${api}graphql`;
 
 // Debug logging (only in development)
 if (typeof window !== 'undefined' && process.env.NODE_ENV !== 'production' && DEBUG) {

@@ -51,7 +51,7 @@
             </div>
         </b-modal>
     </div>
-</template>
+</template>  
 
 <script>
     import _ from 'lodash';

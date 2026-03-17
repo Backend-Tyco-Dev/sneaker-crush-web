@@ -64,21 +64,23 @@ exports.cssLoaders = function (options) {
     css: generateLoaders(),
     postcss: generateLoaders(),
     less: generateLoaders('less'),
-    sass: generateLoaders('sass', { 
-      indentedSyntax: true, 
+    sass: generateLoaders('sass', {
+      indentedSyntax: true,
       implementation: require('sass'),
       sassOptions: {
         outputStyle: 'expanded',
         quietDeps: true,
-        verbose: false
+        verbose: false,
+        silenceDeprecations: ['legacy-js-api', 'import', 'slash-div', 'global-builtin']
       }
     }),
-    scss: generateLoaders('sass', { 
+    scss: generateLoaders('sass', {
       implementation: require('sass'),
       sassOptions: {
         outputStyle: 'expanded',
         quietDeps: true,
-        verbose: false
+        verbose: false,
+        silenceDeprecations: ['legacy-js-api', 'import', 'slash-div', 'global-builtin']
       }
     }),
     stylus: generateLoaders('stylus'),

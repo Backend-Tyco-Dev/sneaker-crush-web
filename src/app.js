@@ -36,5 +36,6 @@ export default () => {
         }
     });
 
+    // eslint-disable-next-line no-undef, no-unreachable -- legacy: returns Promise; app/router used by SSR entry
     return { app, router };
 };

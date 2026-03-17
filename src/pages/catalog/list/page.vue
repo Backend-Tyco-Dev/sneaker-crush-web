@@ -12,7 +12,7 @@
             </b-container>
         </div>
         <b-container>
-            <list :items="items" class="my-5" :load-more="pageInfo.hasNextPage" @load-more="loadItems(pageInfo.currentPage + 1)">
+            <list :items="items" class="my-5" :load-more="pageInfo.hasNextPage" :loading="loading" @load-more="loadItems(pageInfo.currentPage + 1)">
                 <template slot="item" slot-scope="data">
                     <list-item
                         :title="data.item.name"
@@ -28,7 +28,7 @@
                     </template>
                 </template>
             </list>
-            <preloader class="text-center" v-if="loading"></preloader>
+            <preloader class="text-center" v-if="loading && !(items && items.length)"></preloader>
         </b-container>
     </div>
 </template>
