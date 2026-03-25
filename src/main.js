@@ -9,6 +9,7 @@ import '@/components';
 
 import '!!file-loader?name=[name].[ext]!@/sitemap.xml';
 import '!!file-loader?name=[name].[ext]!@/robots.txt';
+import '!!file-loader?name=[name].[ext]!@/ads.txt';
 
 require('./app.js').default();
 

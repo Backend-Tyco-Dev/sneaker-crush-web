@@ -2,7 +2,7 @@
     <!-- Wide ad: add slot ID from AdSense when you create a display ad unit -->
     <Adsense
         v-if="type === 'wide' && slotWide"
-        data-ad-client="ca-pub-9801619597736701"
+        data-ad-client="ca-pub-8300440672362237"
         :data-ad-slot="slotWide"
         data-ad-format="auto"
         data-full-width-responsive="true"
@@ -12,7 +12,7 @@
     <Adsense
         v-else-if="type !== 'wide' && slotQuad"
         class="adsbygoogle quad"
-        data-ad-client="ca-pub-9801619597736701"
+        data-ad-client="ca-pub-8300440672362237"
         :data-ad-slot="slotQuad"
         data-ad-format="fluid"
         :data-ad-layout-key="layoutKeyQuad || undefined">
