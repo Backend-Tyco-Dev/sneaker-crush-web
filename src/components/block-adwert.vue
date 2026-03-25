@@ -8,14 +8,14 @@
         data-full-width-responsive="true"
         class="adsbygoogle hei">
     </Adsense>
-    <!-- Quad/sidebar ad: add slot ID (and optional layout key) from AdSense when you create an ad unit -->
+    <!-- Quad/sidebar: same format as AdSense snippet (auto + responsive) -->
     <Adsense
         v-else-if="type !== 'wide' && slotQuad"
         class="adsbygoogle quad"
         data-ad-client="ca-pub-8300440672362237"
         :data-ad-slot="slotQuad"
-        data-ad-format="fluid"
-        :data-ad-layout-key="layoutKeyQuad || undefined">
+        data-ad-format="auto"
+        data-full-width-responsive="true">
     </Adsense>
 </template>
 <script>
@@ -28,10 +28,8 @@ export default {
     },
     data () {
         return {
-            // Set these when you have ad units from AdSense (Ads → By ad unit). Leave empty until then.
-            slotWide: '',
-            slotQuad: '',
-            layoutKeyQuad: ''
+            slotWide: '3435947277',
+            slotQuad: '8269471552'
         }
     }
 }
