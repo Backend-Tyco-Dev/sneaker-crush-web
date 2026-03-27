@@ -162,7 +162,8 @@
 										image: item.image,
 										route: {name: 'news-view', params: {id: item._id}},
 										left: {type: 'ago', data: item.createdAt},
-										right: {type: 'text', data: 'News'}
+										right: {type: 'text', data: 'News'},
+										sortDate: item.createdAt
 									};
 								});
 								stock = _.concat(stock, aItems);
@@ -175,13 +176,14 @@
 										subtitle: item.nickname || item.colorway,
 										image: _.get(item, 'imageUrls[0]'),
 										route: {name: 'release-view', params: {id: item._id}},
-										left: {type: 'ago', data: item.createdAt},
-										right: {type: 'text', data: 'Release'}
+										left: {type: 'date', data: item.date, format: 'MMMM Do'},
+										right: {type: 'text', data: 'Release'},
+										sortDate: item.createdAt
 									};
 								});
 								stock = _.concat(stock, rItems);
 							}
-							this.stock = _.orderBy(stock, [item => moment(item.left.data).valueOf()], ['desc']);
+							this.stock = _.orderBy(stock, [item => moment(item.sortDate).valueOf()], ['desc']);
 							// console.log(_.map(this.stock, 'left.data'));
 							resolve();
 						});
