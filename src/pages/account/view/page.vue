@@ -22,7 +22,7 @@
                             </div>
                         </rounded>
                     </router-link>
-                    <a href="mailto:david@thesneakercrush.com" class="text-dark">
+                    <a href="mailto:Partners@thesneakercrush.com" class="text-dark">
                         <rounded class="sm py-4 px-4 mt-3 bg-light grad-purple-hover shadow-bottom va text-hover-white hoverable text-center text-xl-left">
                             <div class="vam text-uppercase h6 mb-0 font-weight-bold">
                                 <i class="far fa-comments mr-2"></i>Send feedback

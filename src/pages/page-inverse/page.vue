@@ -1,11 +1,20 @@
 <template>
-    <div class="wrapper bg-image-cover">
-        <router-view></router-view>
+    <div class="wrapper bg-image-cover page-inverse-layout">
+        <router-view class="page-inverse-main"></router-view>
         <nav-footer></nav-footer>
     </div>
 </template>
 
 <style lang="scss" scoped>
+    .page-inverse-layout {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+    }
+    .page-inverse-main {
+        flex: 1 1 auto;
+    }
     .wrapper {
         &:before {
             content: '';

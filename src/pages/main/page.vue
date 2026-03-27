@@ -1,7 +1,15 @@
 <template>
 	<b-container>
+		<section class="home-intro py-4 mb-0">
+			<p class="lead text-dark mb-2">
+				<b>Sneaker Crush</b> is your home for sneaker release dates, footwear news, and catalog browsing—built for collectors who want timely drops and editorial context in one place.
+			</p>
+			<p class="text-muted small mb-0">
+				Browse the latest stories and releases below, explore the <router-link :to="{name: 'catalog-list'}">catalog</router-link> and <router-link :to="{name: 'news-list'}">news</router-link> sections, or learn more <router-link :to="{name: 'about'}">about us</router-link>.
+			</p>
+		</section>
 		<slider-main :items="slider" v-if="slider && slider.length"></slider-main>
-		<list :items="items" class="my-4" :load-more="true" :loading="loading" @load-more="loadPageScroll()" :line-minus="3">
+		<list :items="items" class="my-4" :load-more="false" :loading="loading" :line-minus="3">
 			<template slot="item" slot-scope="data">
 				<list-item
 					:title="data.item.title"
@@ -27,6 +35,11 @@
 				</template>
 			</template>
 		</list>
+		<div class="text-center mb-4" v-if="items && items.length && canLoadMore">
+			<s-button class="grad-purple px-5" :disabled="loading" @click="loadPageScroll()">
+				{{ loading ? 'Loading...' : 'Load More' }}
+			</s-button>
+		</div>
 		<preloader class="text-center" v-if="loading && !(items && items.length)"></preloader>
 	</b-container>
 </template>
@@ -41,7 +54,7 @@
 			meta: [
 				{vmid: 'description', name: 'description', content: 'Stay up to date with the latest Sneaker news &amp; release dates with Sneaker Crush!'},
 				{vmid: 'keywords', name: 'keywords', content: ''},
-				{vmid: 'og:url', name: 'og:url', content: 'http://www.thesneakercrush.com'},
+				{vmid: 'og:url', name: 'og:url', content: 'https://thesneakercrush.com/'},
 				{vmid: 'og:title', name: 'og:title', content: 'Sneaker Crush | Sneaker Media Giant | The Go To for all Nike &amp; Air Jordan News/Release Dates'},
 				{vmid: 'og:description', name: 'og:description', content: 'Stay up to date with the latest Sneaker news &amp; release dates with Sneaker Crush!'},
 			]
@@ -61,6 +74,15 @@
 			stock: [],
 			loading: true
 		}),
+		computed: {
+			canLoadMore() {
+				return !!(
+					(this.stock && this.stock.length) ||
+					_.get(this.articlesInfo, 'hasNextPage') ||
+					_.get(this.releasesInfo, 'hasNextPage')
+				);
+			}
+		},
 		methods: {
 			loadData() {
 				let aPage = (this.articlesInfo.currentPage || 0) + 1;
@@ -177,10 +199,7 @@
 				});
 			},
 			loadPageScroll() {
-				let aPage = (this.articlesInfo.currentPage || 0) + 1;
-				let rPage = (this.releasesInfo.currentPage || 0) + 1;
-				
-				if(!this.loading) {
+				if (!this.loading && this.canLoadMore) {
 					this.loadData();
 				}
 			},
@@ -263,5 +282,10 @@
 </script>
 
 <style lang="scss" scoped>
-	
+.home-intro {
+	.lead {
+		line-height: 1.45;
+		font-size: 1.1rem;
+	}
+}
 </style>

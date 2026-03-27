@@ -1,7 +1,7 @@
 <template>
 	<div class="header" :class="{inverse: inverse}">
 		<b-container>
-			<b-row class="py-4 flex-nowrap">
+			<b-row class="py-4 flex-nowrap align-items-center">
 				<b-col cols="3" md="4" class="d-block d-xl-none va">
 					<div class="vam p-2" @click="toggle()">
 						<!-- <i class="fa fa-bars fa-lg"></i> -->
@@ -143,6 +143,27 @@
 		position: relative;
 		z-index: 1000;
 		font-size: 10pt;
+		/* Flex row centers items; disable global .va inline-block hack here (it fights flex) */
+		.row.align-items-center {
+			.va:before {
+				display: none;
+			}
+			> [class*='col'] {
+				display: flex;
+				align-items: center;
+			}
+			> [class*='col'].text-right {
+				justify-content: flex-end;
+			}
+			> [class*='col'].text-center {
+				justify-content: center;
+			}
+			@media (min-width: 1200px) {
+				> [class*='col'].text-xl-left {
+					justify-content: flex-start;
+				}
+			}
+		}
 		@media (max-width: 576px) {
 			overflow: hidden;
 		}
@@ -169,20 +190,27 @@
 		}
 	}
 	.logo {
-        height: 30px;
-        width: 186px;
-        background-image: url('/static/logo-color.svg');
+		display: inline-block;
+		vertical-align: middle;
+		/* ~163:127 asset; keep modest height so row + align-items-center align nav/search */
+		height: 48px;
+		width: 62px;
+		background-image: url('/static/sneakerCrush.svg');
 		background-repeat: no-repeat;
 		background-position: center center;
 		background-size: contain;
 		max-width: 100%;
+		@media (max-width: 576px) {
+			height: 34px;
+			width: 44px;
+		}
 		&.inverse {
-			background-image: url('/static/logo-outline.svg');
+			background-image: url('/static/sneakerCrush.png');
 		}
 		&.promo {
-			background-image: url('/static/logo-color.svg');
+			background-image: url('/static/sneakerCrush.svg');
 			@media (max-width: 1200px) {
-				background-image: url('/static/logo-outline.svg');
+				background-image: url('/static/sneakerCrush.png');
 			}
 		}
 	}

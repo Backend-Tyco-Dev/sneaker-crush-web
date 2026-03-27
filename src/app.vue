@@ -1,7 +1,7 @@
 <template>
 	<div id="app">
 		<nav-header></nav-header>
-		<router-view :key="$route.fullPath"/>
+		<router-view class="app-router" :key="$route.fullPath"/>
 		<notifications position="top right"/>
 	</div>
 </template>
@@ -31,5 +31,14 @@
 	#app {
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
+		min-height: 100vh;
+		display: flex;
+		flex-direction: column;
+	}
+	.app-router {
+		flex: 1 1 auto;
+		display: flex;
+		flex-direction: column;
+		min-height: 0;
 	}
 </style>

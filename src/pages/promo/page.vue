@@ -31,7 +31,7 @@
                     </b-col>
                 </b-row>
                 <div class="text-center text-xl-right pr-0 pr-xl-5 pb-5 pb-xl-0 pt-3 pt-xl-0 mt-3 mb-5">
-                    <a href="mailto:david@thesneakercrush.com" target="_blank" class="btn wt text-uppercase text-white">
+                    <a href="mailto:Partners@thesneakercrush.com" target="_blank" class="btn wt text-uppercase text-white">
                         <div class="small">
                             <i class="fa fa-envelope mr-2"></i>Contact
                         </div>

@@ -33,6 +33,10 @@ let pages = {
 	},
 	promo: loadPage('promo'),
 	search: loadPage('search'),
+	about: loadPage('about'),
+	contact: loadPage('contact'),
+	privacy: loadPage('privacy'),
+	terms: loadPage('terms'),
 	error: {
 		404: loadPage('error/404')
 	}
@@ -105,6 +109,26 @@ const CONFIG = {
 					path: 'search',
 					name: 'search',
 					component: pages.search
+				},
+				{
+					path: 'about',
+					name: 'about',
+					component: pages.about
+				},
+				{
+					path: 'contact',
+					name: 'contact',
+					component: pages.contact
+				},
+				{
+					path: 'privacy',
+					name: 'privacy',
+					component: pages.privacy
+				},
+				{
+					path: 'terms',
+					name: 'terms',
+					component: pages.terms
 				}
 			]
 		},

@@ -60,7 +60,7 @@
                 </div>
                 <div class="grad-purple line my-5"></div>
             </template>
-            <list :items="items" class="my-5" :load-more="pageInfo.hasNextPage" :loading="loading" @load-more="loadItems(pageInfo.currentPage + 1)" :line="listView == 'list'">
+            <list :items="items" class="my-5" :load-more="false" :loading="loading" :line="listView == 'list'">
                 <template slot="block" slot-scope="data">
                     <list-item
                         :title="data.item.title"
@@ -85,6 +85,11 @@
                     </template>
                 </template>
             </list>
+            <div class="text-center mb-4" v-if="items && items.length && pageInfo.hasNextPage">
+                <s-button class="grad-purple px-5" :disabled="loading" @click="loadItems(pageInfo.currentPage + 1)">
+                    {{ loading ? 'Loading...' : 'Load More' }}
+                </s-button>
+            </div>
             <preloader class="text-center" v-if="loading && !(items && items.length)"></preloader>
         </b-container>
     </div>

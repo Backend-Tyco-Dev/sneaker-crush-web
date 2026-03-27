@@ -51,6 +51,14 @@
         </div>
         <div class="bottom grad-purple">
             <b-container class="h-100">
+                <b-row class="pt-3 pb-0">
+                    <b-col cols="12" class="text-center text-sm-left footer-trust-links">
+                        <router-link :to="{name: 'about'}" class="text-white text-uppercase vam mr-2 mr-sm-3"><b>About</b></router-link>
+                        <router-link :to="{name: 'contact'}" class="text-white text-uppercase vam mr-2 mr-sm-3"><b>Contact</b></router-link>
+                        <router-link :to="{name: 'privacy'}" class="text-white text-uppercase vam mr-2 mr-sm-3"><b>Privacy</b></router-link>
+                        <router-link :to="{name: 'terms'}" class="text-white text-uppercase vam"><b>Terms</b></router-link>
+                    </b-col>
+                </b-row>
                 <b-row class="h-100 py-3">
                     <b-col cols="12" sm="" class="va text-center text-sm-left">
                         <router-link to="/" class="d-inline-block logo vam"></router-link>
@@ -78,7 +86,7 @@
                         </div>
                     </b-col>
                     <b-col cols="12" xl="" class="va text-uppercase text-center text-xl-right text-white text-nowrap">
-                        © 2019 <b>Sneaker Crush</b>
+                        © 2026 <b>Sneaker Crush</b>
                     </b-col>
                 </b-row>
             </b-container>
@@ -130,9 +138,9 @@
         }
     }
     .logo {
-        height: 30px;
-        width: 186px;
-        background-image: url('/static/logo-white.svg');
+        height: 42px;
+        width: 60px;
+        background-image: url('/static/sneakerCrush.png');
         background-repeat: no-repeat;
         background-size: contain;
     }
