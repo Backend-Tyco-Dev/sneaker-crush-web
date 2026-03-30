@@ -12,6 +12,14 @@
             </b-container>
         </div>
         <b-container>
+            <section class="home-intro py-4 mb-0">
+                <p class="lead text-dark mb-2">
+                    Search across sneaker releases in our database. Results update as you run a query from the site search.
+                </p>
+                <p class="text-muted small mb-0" v-if="$route.query.q">
+                    Showing matches for &ldquo;{{ $route.query.q }}&rdquo;.
+                </p>
+            </section>
             <list :items="items" class="my-5" :load-more="pageInfo.hasNextPage" :loading="loading" @load-more="loadItems(pageInfo.currentPage + 1)">
                 <template slot="item" slot-scope="data">
                     <list-item
@@ -31,7 +39,26 @@
 <script>
     import _ from 'lodash';
     import moment from 'moment';
+
+    const SITE_BASE = 'https://thesneakercrush.com';
+
     export default {
+        metaInfo: function() {
+            let q = _.get(this.$route, 'query.q', '');
+            let title = q ? `Search: ${q}` : 'Search';
+            let desc = q
+                ? `Search results for sneaker releases matching “${q}” on Sneaker Crush.`
+                : 'Search sneaker releases on Sneaker Crush.';
+            return {
+                title: title + ' | Sneaker Crush',
+                meta: [
+                    {vmid: 'description', name: 'description', content: desc},
+                    {vmid: 'og:title', property: 'og:title', content: title + ' | Sneaker Crush'},
+                    {vmid: 'og:description', property: 'og:description', content: desc},
+                    {vmid: 'og:url', property: 'og:url', content: SITE_BASE + this.$route.fullPath.split('#')[0]}
+                ]
+            };
+        },
         data: () => ({
             items: null,
             filter: {

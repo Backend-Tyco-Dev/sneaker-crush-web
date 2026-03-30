@@ -12,6 +12,14 @@
             </b-container>
         </div>
         <b-container>
+            <section class="home-intro py-4 mb-0">
+                <p class="lead text-dark mb-2">
+                    Browse silhouettes and colorways in our catalog—reference pages for models and variants beyond a single drop date.
+                </p>
+                <p class="text-muted small mb-0">
+                    For release timing and retailers, use <router-link :to="{name: 'release-list'}">releases</router-link>; for articles, see <router-link :to="{name: 'news-list'}">news</router-link>.
+                </p>
+            </section>
             <list :items="items" class="my-5" :load-more="pageInfo.hasNextPage" :loading="loading" @load-more="loadItems(pageInfo.currentPage + 1)">
                 <template slot="item" slot-scope="data">
                     <list-item
@@ -21,7 +29,7 @@
                         :left="{type: 'year', data: data.item.date}"></list-item>
                 </template>
                 <template slot="other" slot-scope="data">
-                    <template v-if="data.index == 11">
+                    <template v-if="data.index == 18">
                         <b-col cols="12" class="mb-3">
                             <block-adwert type="wide"></block-adwert>
                         </b-col>
@@ -36,6 +44,33 @@
 <script>
     import _ from 'lodash';
     export default {
+        metaInfo: {
+            title: 'Sneaker Catalog',
+            meta: [
+                {
+                    vmid: 'description',
+                    name: 'description',
+                    content: 'Browse the Sneaker Crush catalog: silhouettes, colorways, and model reference pages.'
+                },
+                {vmid: 'og:title', property: 'og:title', content: 'Sneaker Catalog | Sneaker Crush'},
+                {
+                    vmid: 'og:description',
+                    property: 'og:description',
+                    content: 'Browse the Sneaker Crush catalog: silhouettes, colorways, and model reference pages.'
+                },
+                {vmid: 'og:url', property: 'og:url', content: 'https://thesneakercrush.com/catalog'},
+                {
+                    vmid: 'og:image',
+                    property: 'og:image',
+                    content: 'https://thesneakercrush.com/static/favicons/android-icon-192x192.png'
+                },
+                {
+                    vmid: 'keywords',
+                    name: 'keywords',
+                    content: 'sneaker catalog, silhouettes, colorways, model reference'
+                }
+            ]
+        },
         data: () => ({
             items: null,
             pageInfo: {

@@ -11,9 +11,13 @@
 	export default {
 		name: 'app',
 		metaInfo: {
-			title: 'Sneaker Crush | The Latest Sneaker Release Dates + News',
+			title: 'Sneaker Crush',
 			meta: [
-				{vmid: 'description', name: 'description', content: 'Stay up to date with the latest Sneaker news &amp; release dates with Sneaker Crush!'},
+				{
+					vmid: 'description',
+					name: 'description',
+					content: 'Sneaker release dates, footwear news, and catalog browsing at Sneaker Crush.'
+				},
 				// {vmid: 'keywords', name: 'keywords', content: ''}
 				// {vmid: 'og:url', name: 'og:url', content: 'http://www.thesneakercrush.com'},
 				// {vmid: 'og:title', name: 'og:title', content: 'Sneaker Crush | Sneaker Media Giant | The Go To for all Nike &amp; Air Jordan News/Release Dates'},
@@ -28,12 +32,19 @@
 </script>
 
 <style lang="scss">
+	html,
+	body {
+		margin: 0;
+		min-height: 100vh;
+		background-color: #fff;
+	}
 	#app {
 		-webkit-font-smoothing: antialiased;
 		-moz-osx-font-smoothing: grayscale;
 		min-height: 100vh;
 		display: flex;
 		flex-direction: column;
+		background-color: #fff;
 	}
 	.app-router {
 		flex: 1 1 auto;

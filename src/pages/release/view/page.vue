@@ -55,6 +55,9 @@
                     <div class="text-muted mt-4" v-if="item.description">
                         {{item.description}}
                     </div>
+                    <p v-else-if="item" class="text-muted mt-4 release-context mb-0">
+                        {{ releaseContextSummary }}
+                    </p>
                 </b-col>
             </b-row>
             <b-row class="my-4">
@@ -185,16 +188,55 @@
 
     export default {
         metaInfo: function() {
-			return {
+			const base = 'https://thesneakercrush.com';
+			const out = {
 				title: this.seo.title,
 				meta: [
 					{vmid: 'description', name: 'description', content: this.seo.description},
 					{vmid: 'keywords', name: 'keywords', content: this.seo.keywords},
 					{vmid: 'og:title', name: 'og:title', content: this.seo.title},
 					{vmid: 'og:description', name: 'og:description', content: this.seo.description},
-					{vmid: 'og:image', name: 'og:image', content: this.seo.image}
+					{vmid: 'og:image', name: 'og:image', content: this.seo.image},
+					{vmid: 'og:url', property: 'og:url', content: base + this.$route.path}
 				]
 			};
+			if (this.item && this.seo.title) {
+				const product = {
+					'@context': 'https://schema.org',
+					'@type': 'Product',
+					name: this.item.title,
+					description: this.seo.description
+				};
+				if (this.seo.image) {
+					product.image = [this.seo.image];
+				}
+				const rawPrice = this.item.price;
+				let num = null;
+				if (typeof rawPrice === 'number' && !isNaN(rawPrice)) {
+					num = rawPrice;
+				} else if (rawPrice != null && rawPrice !== '') {
+					const n = parseFloat(String(rawPrice).replace(/[^0-9.]/g, ''));
+					if (!isNaN(n)) {
+						num = n;
+					}
+				}
+				if (num != null) {
+					product.offers = {
+						'@type': 'Offer',
+						priceCurrency: 'USD',
+						price: String(num),
+						availability: 'https://schema.org/PreOrder'
+					};
+				}
+				out.script = [
+					{
+						vmid: 'ld-release-product',
+						type: 'application/ld+json',
+						innerHTML: JSON.stringify(product)
+					}
+				];
+			}
+			return out;
 		},
         data: () => ({
             item: null,
@@ -216,6 +258,31 @@
                 image: ''
             },
         }),
+        computed: {
+            releaseContextSummary() {
+                let r = this.item;
+                if (!r) {
+                    return '';
+                }
+                let parts = [r.title];
+                if (r.nickname) {
+                    parts[0] += ` (${r.nickname})`;
+                }
+                let out = parts[0] + '.';
+                if (r.colorway) {
+                    out += ` Colorway: ${r.colorway}.`;
+                }
+                if (r.date) {
+                    let fmt = r.hasUnknownDay ? 'MMMM YYYY' : 'MMMM D, YYYY';
+                    out += ` Expected release: ${moment(r.date).format(fmt)}.`;
+                }
+                if (r.price != null && r.price !== '') {
+                    out += ` Retail ${this.$options.filters.currency(r.price)}.`;
+                }
+                out += ' Use the retailer buttons when available to shop this drop.';
+                return out;
+            }
+        },
         methods: {
             loadPopular() {
                 let now = moment();
@@ -418,8 +485,8 @@ END:VCALENDAR`;
 
                     let seo = this.seo;
 		        	seo.title = Release.title;
-		        	seo.description = Release.description;
-		        	// seo.keywords = '',
+		        	seo.description = Release.description || _.truncate(this.releaseContextSummary, {length: 160, separator: ' '});
+		        	seo.keywords = _.compact([Release.nickname, Release.colorway, 'sneaker release']).join(', ');
 		        	seo.image = this.$normalizeImageUrl(Release.imageUrls && Release.imageUrls.length && Release.imageUrls[0]);
                     // console.log(this.$route.params.like);
                     // console.log(Release.date);

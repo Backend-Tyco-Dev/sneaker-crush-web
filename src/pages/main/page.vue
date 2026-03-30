@@ -24,11 +24,11 @@
 					<b-col cols="6" sm="4" lg="3" class="d-inline-block mb-4 float-right">
 						<block-popular :items="popular"></block-popular>
 					</b-col>
-				</template><template v-else-if="data.index % 23 == 0 && !$store.getters.isMobile">
+				</template><template v-else-if="data.index % 36 == 0 && !$store.getters.isMobile">
 					<b-col cols="6" sm="4" lg="3" class="d-inline-block float-right mb-4">
 						<block-adwert type="quad"></block-adwert>
 					</b-col>
-				</template><template v-if="(data.index + 1) % 14 == 0">
+				</template><template v-if="(data.index + 1) % 22 == 0">
 					<b-col cols="12" class="d-inline-block mb-4 float-right">
 						<block-adwert type="wide"></block-adwert>
 					</b-col>
@@ -52,11 +52,28 @@
 		metaInfo: {
 			title: 'Sneaker Crush',
 			meta: [
-				{vmid: 'description', name: 'description', content: 'Stay up to date with the latest Sneaker news &amp; release dates with Sneaker Crush!'},
-				{vmid: 'keywords', name: 'keywords', content: ''},
-				{vmid: 'og:url', name: 'og:url', content: 'https://thesneakercrush.com/'},
-				{vmid: 'og:title', name: 'og:title', content: 'Sneaker Crush | Sneaker Media Giant | The Go To for all Nike &amp; Air Jordan News/Release Dates'},
-				{vmid: 'og:description', name: 'og:description', content: 'Stay up to date with the latest Sneaker news &amp; release dates with Sneaker Crush!'},
+				{
+					vmid: 'description',
+					name: 'description',
+					content: 'Sneaker release dates, footwear news, and catalog browsing for collectors—timely drops and editorial context in one place.'
+				},
+				{
+					vmid: 'keywords',
+					name: 'keywords',
+					content: 'sneaker releases, sneaker news, Jordan release dates, Nike drops, footwear calendar'
+				},
+				{vmid: 'og:url', property: 'og:url', content: 'https://thesneakercrush.com/'},
+				{vmid: 'og:title', property: 'og:title', content: 'Sneaker Crush | Release Dates &amp; News'},
+				{
+					vmid: 'og:description',
+					property: 'og:description',
+					content: 'Sneaker release dates, footwear news, and catalog browsing for collectors—timely drops and editorial context in one place.'
+				},
+				{
+					vmid: 'og:image',
+					property: 'og:image',
+					content: 'https://thesneakercrush.com/static/favicons/android-icon-192x192.png'
+				}
 			]
 		},
 		data: () => ({

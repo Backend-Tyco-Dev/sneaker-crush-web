@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="bg-main">
-            <b-container class="py-5">
+            <b-container class="py-4">
                 <b-row>
                     <b-col class="va">
                         <h2 class="text-white vam mb-0">
@@ -11,7 +11,7 @@
                 </b-row>
             </b-container>
         </div>
-        <b-container class="py-5 legal-page">
+        <b-container class="py-4 legal-page">
             <p class="lead">
                 Sneaker Crush is an editorial destination focused on sneaker release dates, industry news, and catalog-style discovery for collectors and fans worldwide.
             </p>

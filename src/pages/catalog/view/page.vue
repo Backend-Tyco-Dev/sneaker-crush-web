@@ -13,9 +13,19 @@
                 </b-container>
             </div>
             <b-container>
-                <div class="mt-4">
+                <section class="section-intro py-3">
+                    <p class="text-muted small mb-0">
+                        Catalog pages group colorways and purchase links for this silhouette. For release timing and calendar updates, see the
+                        <router-link :to="{name: 'release-list'}">releases</router-link>
+                        section.
+                    </p>
+                </section>
+                <div class="mt-4" v-if="item.description">
                     {{item.description}}
                 </div>
+                <p v-else class="text-muted mt-4 mb-0">
+                    {{ catalogFallbackSummary }}
+                </p>
                 <list :items="item.colorways" class="my-5">
                     <template slot="item" slot-scope="data">
                         <rounded class="shadow h-100 responsive">
@@ -55,7 +65,25 @@
 
 <script>
     import _ from 'lodash';
+    import moment from 'moment';
+
+    const SITE_BASE = 'https://thesneakercrush.com';
+
     export default {
+        metaInfo: function() {
+            if (!this.seo.title) {
+                return {title: 'Catalog'};
+            }
+            return {
+                title: this.seo.title + ' | Sneaker Crush Catalog',
+                meta: [
+                    {vmid: 'description', name: 'description', content: this.seo.description},
+                    {vmid: 'og:title', property: 'og:title', content: this.seo.title + ' | Sneaker Crush'},
+                    {vmid: 'og:description', property: 'og:description', content: this.seo.description},
+                    {vmid: 'og:url', property: 'og:url', content: SITE_BASE + this.$route.path}
+                ]
+            };
+        },
         data: () => ({
             item: null,
             modals: {
@@ -64,8 +92,27 @@
                     items: null
                 }
             },
-            loading: true
+            loading: true,
+            seo: {
+                title: '',
+                description: ''
+            }
         }),
+        computed: {
+            catalogFallbackSummary() {
+                let s = this.item;
+                if (!s) {
+                    return '';
+                }
+                let year = s.date ? moment(s.date).format('YYYY') : '';
+                let out = `${s.name} in the Sneaker Crush catalog.`;
+                if (year) {
+                    out += ` Added ${year}.`;
+                }
+                out += ' Browse colorways below or check upcoming drops in releases.';
+                return out;
+            }
+        },
         methods: {
             open(item) {
                 let links = item.links;
@@ -105,8 +152,12 @@
                     }
                 }
             }).then(({Sneaker}) => {
-                // console.log(Sneaker);
                 this.item = Sneaker;
+                if (Sneaker) {
+                    this.seo.title = Sneaker.name;
+                    this.seo.description = Sneaker.description
+                        || _.truncate(this.catalogFallbackSummary, {length: 160, separator: ' '});
+                }
             }).finally(() => {
                 this.loading = false;
             });

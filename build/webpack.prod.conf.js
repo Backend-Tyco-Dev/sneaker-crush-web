@@ -132,6 +132,24 @@ const webpackConfig = merge(baseWebpackConfig, {
   ]
 })
 
+if (process.env.SKIP_PRERENDER !== '1') {
+  const PrerenderSPAPlugin = require('prerender-spa-plugin')
+  const Renderer = PrerenderSPAPlugin.PuppeteerRenderer
+  const staticSiteDir = path.join(config.build.assetsRoot, 'site')
+  webpackConfig.plugins.push(
+    new PrerenderSPAPlugin({
+      staticDir: staticSiteDir,
+      routes: config.build.prerenderRoutes || ['/', '/news', '/releases', '/catalog', '/about', '/contact', '/privacy', '/terms'],
+      renderer: new Renderer({
+        renderAfterTime: 12000,
+        maxConcurrentRoutes: 1,
+        headless: true,
+        args: ['--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage']
+      })
+    })
+  )
+}
+
 if (config.build.productionGzip) {
   const CompressionWebpackPlugin = require('compression-webpack-plugin')
   webpackConfig.plugins.push(

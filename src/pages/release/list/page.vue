@@ -21,6 +21,14 @@
             </b-container>
         </div>
         <b-container>
+            <section class="home-intro py-4 mb-0">
+                <p class="lead text-dark mb-2">
+                    Browse upcoming sneaker drops by month and brand. Each listing links to a full release page with retailers, calendar options, and details.
+                </p>
+                <p class="text-muted small mb-0">
+                    For stories and analysis, visit <router-link :to="{name: 'news-list'}">news</router-link> or read <router-link :to="{name: 'about'}">about Sneaker Crush</router-link>.
+                </p>
+            </section>
             <div>
                 <b-row class="my-4 flex-nowrap">
                     <b-col cols="" class="text-nowrap text-left">
@@ -74,11 +82,11 @@
                     <list-release-item :item="data.item" :prev="data.items[data.index - 1]" :next="data.items[data.index + 1]"></list-release-item>
                 </template>
                 <template slot="other" slot-scope="data">
-                    <template v-if="data.index % 23 == 0 && listView == 'grid' && !$store.getters.isMobile">
+                    <template v-if="data.index % 36 == 0 && listView == 'grid' && !$store.getters.isMobile">
 					    <b-col cols="6" sm="4" lg="3" class="d-inline-block mb-4 float-right">
 						    <block-adwert type="quad"></block-adwert>
 					    </b-col>
-				    </template><template v-if="listView == 'list' ? data.index == 2 : data.index == 15">
+				    </template><template v-if="listView == 'list' ? data.index == 4 : data.index == 15">
                         <b-col cols="12" class="mb-3 float-left">
                             <block-adwert type="wide"></block-adwert>
                         </b-col>
@@ -99,6 +107,33 @@
     import _ from 'lodash';
     import moment from 'moment';
     export default {
+        metaInfo: {
+            title: 'Sneaker Release Dates',
+            meta: [
+                {
+                    vmid: 'description',
+                    name: 'description',
+                    content: 'Browse upcoming sneaker release dates by month and brand. Full pages include retailers, calendar export, and drop details.'
+                },
+                {vmid: 'og:title', property: 'og:title', content: 'Sneaker Release Dates | Sneaker Crush'},
+                {
+                    vmid: 'og:description',
+                    property: 'og:description',
+                    content: 'Browse upcoming sneaker release dates by month and brand. Full pages include retailers, calendar export, and drop details.'
+                },
+                {vmid: 'og:url', property: 'og:url', content: 'https://thesneakercrush.com/releases'},
+                {
+                    vmid: 'og:image',
+                    property: 'og:image',
+                    content: 'https://thesneakercrush.com/static/favicons/android-icon-192x192.png'
+                },
+                {
+                    vmid: 'keywords',
+                    name: 'keywords',
+                    content: 'sneaker release dates, upcoming sneakers, Jordan release calendar, Nike drops'
+                }
+            ]
+        },
         data: () => ({
             popular: null,
             items: null,

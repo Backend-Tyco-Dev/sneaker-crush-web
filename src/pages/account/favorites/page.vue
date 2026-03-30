@@ -24,7 +24,7 @@
                     </list-item>
                 </template>
                 <template slot="other" slot-scope="data">
-                    <template v-if="(data.index + 1) % 16 == 0">
+                    <template v-if="(data.index + 1) % 22 == 0">
                         <b-col cols="12" class="d-inline-block mt-4 float-right">
                             <block-adwert type="wide"></block-adwert>
                         </b-col>

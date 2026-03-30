@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="bg-main">
-            <b-container class="py-5">
+            <b-container class="py-4">
                 <b-row>
                     <b-col class="va">
                         <h2 class="text-white vam mb-0">
@@ -11,7 +11,7 @@
                 </b-row>
             </b-container>
         </div>
-        <b-container class="py-5 legal-page">
+        <b-container class="py-4 legal-page">
             <p class="lead">
                 We read messages from readers and partners. For general inquiries, editorial feedback, or business questions, use the email below.
             </p>

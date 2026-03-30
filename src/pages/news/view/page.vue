@@ -110,18 +110,59 @@
         'kicksusa': '/static/icon-kicksusa.svg'
     };
 
+    const stripHtml = html => {
+        if (!html) {
+            return '';
+        }
+        let div = document.createElement('div');
+        div.innerHTML = html;
+        return (div.textContent || div.innerText || '').replace(/\s+/g, ' ').trim();
+    };
+
     export default {
         metaInfo: function() {
-			return {
+			let base = 'https://thesneakercrush.com';
+			const out = {
 				title: this.seo.title,
 				meta: [
 					{vmid: 'description', name: 'description', content: this.seo.description},
 					{vmid: 'keywords', name: 'keywords', content: this.seo.keywords},
 					{vmid: 'og:title', name: 'og:title', content: this.seo.title},
 					{vmid: 'og:description', name: 'og:description', content: this.seo.description},
-					{vmid: 'og:image', name: 'og:image', content: this.seo.image}
+					{vmid: 'og:image', name: 'og:image', content: this.seo.image},
+					{vmid: 'og:url', property: 'og:url', content: base + this.$route.path}
 				]
 			};
+			if (this.item && this.seo.title) {
+				const article = {
+					'@context': 'https://schema.org',
+					'@type': 'NewsArticle',
+					headline: this.seo.title,
+					description: this.seo.description,
+					datePublished: this.item.date ? moment(this.item.date).toISOString() : undefined,
+					image: this.seo.image ? [this.seo.image] : undefined,
+					publisher: {
+						'@type': 'Organization',
+						name: 'Sneaker Crush',
+						logo: {
+							'@type': 'ImageObject',
+							url: base + '/static/favicons/android-icon-192x192.png'
+						}
+					},
+					mainEntityOfPage: {
+						'@type': 'WebPage',
+						'@id': base + this.$route.path
+					}
+				};
+				out.script = [
+					{
+						vmid: 'ld-news-article',
+						type: 'application/ld+json',
+						innerHTML: JSON.stringify(article)
+					}
+				];
+			}
+			return out;
 		},
         data: () => ({
             item: null,
@@ -236,9 +277,9 @@
 
                     let seo = this.seo;
 		        	seo.title = Article.title;
-		        	// seo.description = ,
-		        	// seo.keywords = '',
-		        	seo.image = Article.image;
+		        	seo.description = _.truncate(stripHtml(Article.content), {length: 160, separator: ' '}) || Article.title;
+		        	seo.keywords = _.compact([Article.source, 'sneakers', 'footwear news']).join(', ');
+		        	seo.image = this.$normalizeImageUrl(Article.image) || '';
                 }
             }).finally(() => {
                 this.loading = false;

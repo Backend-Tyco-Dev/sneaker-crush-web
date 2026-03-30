@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Public index URLs. Per-release and per-article URLs require a build-time or server-generated sitemap. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
    <url>
       <loc>https://thesneakercrush.com/</loc>
+   </url>
+   <url>
+      <loc>https://thesneakercrush.com/releases</loc>
+   </url>
+   <url>
+      <loc>https://thesneakercrush.com/news</loc>
+   </url>
+   <url>
+      <loc>https://thesneakercrush.com/catalog</loc>
+   </url>
+   <url>
+      <loc>https://thesneakercrush.com/search</loc>
+   </url>
+   <url>
+      <loc>https://thesneakercrush.com/about</loc>
+   </url>
+   <url>
+      <loc>https://thesneakercrush.com/contact</loc>
+   </url>
+   <url>
+      <loc>https://thesneakercrush.com/privacy</loc>
+   </url>
+   <url>
+      <loc>https://thesneakercrush.com/terms</loc>
    </url>
 </urlset>

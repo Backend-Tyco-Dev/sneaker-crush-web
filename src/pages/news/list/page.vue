@@ -12,6 +12,14 @@
             </b-container>
         </div>
         <b-container>
+            <section class="home-intro py-4 mb-0">
+                <p class="lead text-dark mb-2">
+                    Read footwear news, industry updates, and editorial coverage—each story opens on its own page with full text and discussion.
+                </p>
+                <p class="text-muted small mb-0">
+                    Tracking drops? Use the <router-link :to="{name: 'release-list'}">releases</router-link> calendar or learn more <router-link :to="{name: 'about'}">about us</router-link>.
+                </p>
+            </section>
             <template v-if="popular && popular.length">
                 <div class="mt-5">
                     <headline>
@@ -61,11 +69,11 @@
                         :right="{type: 'text', data: data.item.source}"></list-item>
                 </template>
                 <template slot="other" slot-scope="data">
-                    <template v-if="data.index % 23 == 0 && !$store.getters.isMobile">
+				<template v-if="data.index % 36 == 0 && !$store.getters.isMobile">
 					    <b-col cols="6" sm="4" lg="3" class="d-inline-block mb-4 float-right">
 						    <block-adwert type="quad"></block-adwert>
 					    </b-col>
-				    </template><template v-if="(data.index + 1) % 14 == 0">
+				    </template><template v-if="(data.index + 1) % 22 == 0">
                             <b-col cols="12" class="mb-3 float-left">
                                 <block-adwert type="wide"></block-adwert>
                             </b-col>
@@ -93,6 +101,33 @@
     };
 
     export default {
+        metaInfo: {
+            title: 'Sneaker News',
+            meta: [
+                {
+                    vmid: 'description',
+                    name: 'description',
+                    content: 'Sneaker news and editorial articles: release context, industry updates, and stories from Sneaker Crush.'
+                },
+                {vmid: 'og:title', property: 'og:title', content: 'Sneaker News | Sneaker Crush'},
+                {
+                    vmid: 'og:description',
+                    property: 'og:description',
+                    content: 'Sneaker news and editorial articles: release context, industry updates, and stories from Sneaker Crush.'
+                },
+                {vmid: 'og:url', property: 'og:url', content: 'https://thesneakercrush.com/news'},
+                {
+                    vmid: 'og:image',
+                    property: 'og:image',
+                    content: 'https://thesneakercrush.com/static/favicons/android-icon-192x192.png'
+                },
+                {
+                    vmid: 'keywords',
+                    name: 'keywords',
+                    content: 'sneaker news, footwear news, Jordan news, release coverage, Sneaker Crush'
+                }
+            ]
+        },
         data: () => ({
             popular: null,
             items: null,
